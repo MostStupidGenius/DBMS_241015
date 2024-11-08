@@ -1,0 +1,9 @@
+-- INDEX
+-- 검색 성능을 향상하기 위해 사용하는 데이터 구조
+-- CREATE INDEX 인덱스명 ON 테이블명(컬럼1, 컬럼2,...);
+SELECT *
+FROM EMPLOYEES e
+WHERE LAST_NAME = 'Smith';
+
+CREATE INDEX IDX_EMPLOYEES_LAST_NAME
+ON EMPLOYEES(LAST_NAME);

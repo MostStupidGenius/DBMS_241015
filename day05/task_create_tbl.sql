@@ -1,0 +1,113 @@
+/*개념적 설계
+화분 판매 시스템
+
+- 화분에 대한 정보
+- 꽃에 대한 정보
+- 상품(꽃 + 화분)에 대한 정보
+각 화분과 꽃을 조합해서 하나의 상품을 만들 수 있다.
+
+개념적 설계
+- 각 테이블에서 반드시 필요한 컬럼 정보 설정
+
+논리적 설계
+- PK값 설정
+- FK값이 있다면 설정
+
+물리적 설계
+- 각 컬럼의 타입과 데이터크기 NOT NULL 등 설정
+
+-> 테이블 만들기*/
+
+/*- 화분에 대한 정보
+- 꽃에 대한 정보
+- 상품(꽃 + 화분)에 대한 정보
+각 화분과 꽃을 조합해서 하나의 상품을 만들 수 있다.
+ * */
+-- 개념적 설계
+-- 꽃 테이블
+-- 꽃ID, 꽃의 이름, 꽃의 가격(, 원산지)
+-- 화분 테이블
+-- 화분ID, 화분 이름, 화분 가격(, 재질)
+
+-- 논리적 설계
+-- TBL_FLOWER
+-- FLOWER_ID
+-- FLOWER_NAME
+-- FLOWER_PRICE
+
+-- TBL_POT
+-- POT_ID
+-- POT_NAME
+-- POT_PRICE
+
+-- 상품 테이블
+-- TBL_PRODUCT
+-- PRODUCT_ID	PK
+-- FLOWER_ID	FK
+-- POT_ID		FK
+-- PRICE		
+
+-- 물리적 설계
+-- TBL_FLOWER
+-- FLOWER_ID
+-- FLOWER_NAME
+-- FLOWER_PRICE
+CREATE TABLE TBL_FLOWER (
+	 FLOWER_ID NUMBER NOT NULL,
+	 FLOWER_NAME VARCHAR2(100) NOT NULL,
+	 FLOWER_PRICE NUMBER
+--	 CONSTRAINT FLOWER_PK PRIMARY KEY (FLOWER_ID)
+);
+DROP TABLE TBL_FLOWER;
+
+-- TBL_POT
+-- POT_ID
+-- POT_NAME
+-- POT_PRICE
+CREATE TABLE TBL_POT (
+	POT_ID NUMBER NOT NULL,
+	POT_NAME VARCHAR2(100) NOT NULL,
+	POT_PRICE NUMBER,
+	CONSTRAINT POT_PK PRIMARY KEY (POT_ID)
+);
+--DROP TABLE TBL_POT;
+
+-- 상품 테이블
+-- TBL_PRODUCT
+-- PRODUCT_ID	PK
+-- FLOWER_ID	FK
+-- POT_ID		FK
+-- PRICE	
+CREATE TABLE TBL_PRODUCT (
+	PRODUCT_ID NUMBER NOT NULL,
+	FLOWER_ID NUMBER NOT NULL,
+	POT_ID NUMBER NOT NULL,
+	PRICE NUMBER,
+--	제약 조건 PK, FK
+	-- PK
+	CONSTRAINT PRODUCT_PK PRIMARY KEY (PRODUCT_ID),
+	CONSTRAINT FLOWER_FK FOREIGN KEY (FLOWER_ID) REFERENCES TBL_FLOWER(FLOWER_ID),
+	CONSTRAINT POT_FK FOREIGN KEY (POT_ID) REFERENCES TBL_POT(POT_ID)
+);
+	-- FK(TBL_FLOWER)
+	-- FK(TBL_POT)
+DROP TABLE TBL_PRODUCT;
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE TBL_FLOWER (
+	
+);
+
+
+
+

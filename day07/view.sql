@@ -1,0 +1,19 @@
+-- 뷰 테이블(가상 테이블)
+-- SELECT문의 결과 테이블을 마치 하나의 존재하는 테이블처럼
+-- 가상의 테이블을 만들어 사용할 수 있게 하는 것.
+
+SELECT *
+FROM PLAYER;
+
+-- 뷰 테이블 만들기
+CREATE VIEW PLAYER_VIEW_ORDERED AS
+SELECT PLAYER_ID , PLAYER_NAME , "POSITION" 
+FROM PLAYER
+ORDER BY PLAYER_ID;
+
+SELECT *
+FROM PLAYER_VIEW_ORDERED
+WHERE "POSITION" = 'DF';
+
+
+

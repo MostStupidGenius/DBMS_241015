@@ -1,0 +1,61 @@
+-- 운동선수 테이블 있는지 확인
+SELECT *
+FROM PLAYER p ;
+
+-- 운동선수와 스타디움 등의 테이블을 이용해서
+-- SELECT문 실습
+
+-- PLAYER 테이블에서 WEIGHT가 70 이상이고 80이하인 선수 검색
+SELECT PLAYER_NAME "이름", WEIGHT "몸무게" 
+FROM PLAYER
+--WHERE WEIGHT >= 70 AND WEIGHT <= 80
+WHERE WEIGHT BETWEEN 70 AND 80
+ORDER BY WEIGHT;
+
+-- 1. PLAYER 테이블에서 TEAM_ID가 'K03'이고 HEIGHT가 180미만인 선수 검색
+SELECT PLAYER_NAME , TEAM_ID , HEIGHT 
+FROM PLAYER
+WHERE TEAM_ID = 'K03' AND  HEIGHT < 180;
+--ORDER BY HEIGHT DESC;
+
+-- 2. PLAYER 테이블에서 TEAM_ID가 'K06'이고 NICKNAME이 '제리'인 선수 검색
+SELECT PLAYER_NAME, TEAM_ID, NICKNAME 
+FROM PLAYER
+WHERE TEAM_ID = 'K06'
+AND '제리' = NICKNAME; -- 조건문의 컬러명과 비교할 값의 자리를 바꿔도 작동한다.
+
+-- 3. PLAYER 테이블에서 HEIGHT가 170이상이고 WEIGHT가 80 이상인
+-- 선수 이름 검색
+SELECT PLAYER_NAME AS "이름", HEIGHT "키", WEIGHT 몸무게
+FROM PLAYER
+WHERE HEIGHT >= 170
+AND WEIGHT >= 80;
+--ORDER BY WEIGHT, HEIGHT DESC;
+
+-- 4. STADIUM 테이블에서 SEAT_COUNT가 30000 초과이고 41000 이하인
+-- 경기장 검색
+SELECT STADIUM_NAME, SEAT_COUNT 
+FROM STADIUM
+WHERE SEAT_COUNT > 30000 AND SEAT_COUNT <= 41000;
+--WHERE SEAT_COUNT BETWEEN 30000 AND 41000
+--AND SEAT_COUNT <> 30000;
+
+-- 5. PLAYER 테이블에서 POSITION이 'DF'인 사람들에 대해서
+-- 평균 키를 구해보자. + 평균 몸무게도 구해보자.
+-- GROUP BY, AVG(), HAVING
+SELECT "POSITION" , AVG(HEIGHT)
+FROM PLAYER
+--WHERE "POSITION" = 'DF' 
+GROUP BY "POSITION"
+--HAVING "POSITION" = 'DF'
+--HAVING AVG(HEIGHT) >= 180
+;
+-- WHERE와 HAVING은 모두 조건에 따라 행을 필터링하여 가져오기 위한 문법이다.
+-- 차이점 : WHERE는 GROUP BY 없이도 사용 가능하며,
+-- 집계함수를 조건문 안에서 쓸 수 없다.
+-- HAVING은 GROUP BY 뒤에만 올 수 있으며,
+-- 집계함수를 조건문 안에서 쓸 수 있다.
+
+
+
+

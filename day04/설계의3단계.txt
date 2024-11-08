@@ -1,0 +1,49 @@
+설계의 3단계
+
+개념적 설계
+ - 각 테이블 간의 관계를 대략적으로 도식화해서
+ 구조를 정의하는 단계다(추상적).
+상품			장바구니
+카테고리		구매가
+원가			개수
+판매가		
+할인율		
+재고			
+
+
+논리적 설계
+ - 개념적 설계로 만들어진 것을 의사코드로
+ 대략적인 코드를 만드는 단계다(실행x 코드).
+상품			장바구니
+상품ID		담긴물건ID
+---------------------
+카테고리		상품ID
+원가			구매가
+판매가		개수
+할인율		
+재고			
+
+ 
+물리적 설계
+ - 실제로 DB에 적용할 코드를 작성하는 단계
+TBL_PRODUCT		
+------------------------------
+PRODUCT_ID	NUMBER	PK	
+---------------------
+CATEGORY 	VARCHAR2(100)	
+RAW_PRICE	NUMBER NOT NULL		
+SELL_PRICE	NUMBER
+DC			NUMBER
+STOCK		NUMBER
+
+TBL_SHOPPING
+-------------
+SHOPPING_ID PK
+-------------
+PRODUCT_ID	NUMBER	FK
+PRICE		NUMBER	NOT NULL
+COUNT		NUMBER	NOT NULL
+
+
+
+

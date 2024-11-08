@@ -1,0 +1,34 @@
+-- 트랜젝션(transaction)과 TCL
+-- 트랜젝션의 변경사항 확정 -> COMMIT;
+-- 트랜젝션의 변경사항 취소 -> ROLLBACK TO
+-- 트랜젝션의 변경사항 중간 저장지점 생성 -> SAVEPOINT 지점이름
+BEGIN TRANSACTION;
+
+SELECT PLAYER_NAME
+FROM PLAYER;
+
+CREATE TABLE TBL_TEST (
+	NAME VARCHAR2(100),
+	ID NUMBER PRIMARY KEY
+);
+
+INSERT INTO TBL_TEST(NAME, ID)
+VALUES ('홍길동', 1);
+
+COMMIT;
+-- 테이블 생성 및 데이터 1줄 추가 후 커밋
+SELECT *
+FROM TBL_TEST;
+
+INSERT INTO TBL_TEST(NAME, ID)
+VALUES ('김길동', 2);
+
+SAVEPOINT S1; -- 반-확정
+
+INSERT INTO TBL_TEST(NAME, ID)
+VALUES ('이길동', 3);
+
+ROLLBACK TO SAVEPOINT S1;
+
+ROLLBACK;
+
